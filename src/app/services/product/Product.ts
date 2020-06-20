@@ -5,7 +5,7 @@ export class Product {
     name: string;
     rate: number;
     quality: 1 | 2 | 3;
-  
+
     constructor(obj: any) {
       if (obj) {
         this.id = generateID();
