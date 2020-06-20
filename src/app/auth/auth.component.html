@@ -1,0 +1,34 @@
+<div class="container">
+    <form class="login-form offset-3 col-md-6 col-sm-6 py-md-5"
+        [formGroup]="loginForm" (ngSubmit)="login()">
+        <h3 class="text-center">Login</h3>
+        <div *ngIf="errorMsg" class="text-danger text-center">{{errorMsg}}</div>
+        <div class="col-md-12 col-sm-12 py-md-3">
+            <input class="form-control" type="text" placeholder="Username"
+                name="uname" formControlName="username">
+        </div>
+
+        <div *ngIf="isSubmitted && formControls.username.errors"
+            class="text-danger px-md-3">
+            <div *ngIf="formControls.username.errors.required">Username is
+                required</div>
+            <div *ngIf="formControls.username.hasError('pattern')">Not a valid
+                Email</div>
+        </div>
+        <div class="col-md-12 col-sm-12 py-md-3">
+            <input class="form-control" type="password" placeholder="Password"
+                formControlName="password" name="psw">
+        </div>
+        <div *ngIf="isSubmitted && formControls.password.errors"
+            class="text-danger px-md-3">
+            <div *ngIf="formControls.password.errors.required">Password is
+                required</div>
+            <div *ngIf="formControls.password.hasError('pattern')">Password
+                should contains atleast one uppercase later</div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 text-center py-md-3">
+            <button class="btn btn-info" type="submit">Login</button>
+        </div>
+    </form>
+</div>
