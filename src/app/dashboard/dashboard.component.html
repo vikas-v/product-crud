@@ -1,1 +1,18 @@
-<p>dashboard works!</p>
+<div class="container my-md-5">
+    <p>
+        Welcome <strong>{{username}}</strong>
+        <button (click)="logout()" class="btn btn-link float-right">Logout</button>
+    </p>
+    <div class="card">
+        <div class="card-body">
+            <app-add-product></app-add-product>  
+            <div *ngIf="products.length">
+                Total Products: {{products.length}}
+            </div>
+            <div class="py-md-2">
+                <app-products></app-products>
+            </div>
+        </div>
+    </div>
+</div>
+

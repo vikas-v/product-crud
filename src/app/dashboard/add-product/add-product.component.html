@@ -1,0 +1,55 @@
+<button class="btn btn-primary float-right" (click)="openModal(template)">Add Product</button>
+<div class="clearfix"></div>
+<ng-template #template>
+    <div class="modal-header">
+        <h3 class="text-center">Add Product</h3>
+        <button type="button" class="close pull-right" aria-label="Close"
+            (click)="modalRef.hide()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div [formGroup]="productForm">
+            <div *ngIf="errorMsg" class="text-danger text-center">{{errorMsg}}</div>
+            <div class="col-md-12 col-sm-12 py-md-3">
+                <input class="form-control" type="text" placeholder="Product Name"
+                    name="uname" formControlName="name">
+            </div>
+
+            <div *ngIf="isSubmitted && formControls.name.errors"
+                class="text-danger px-md-3">
+                <div *ngIf="formControls.name.errors.required">Product name is
+                    required</div>
+            </div>
+            <div class="col-md-12 col-sm-12 py-md-3">
+                <input class="form-control" type="number" placeholder="Rate"
+                    formControlName="rate" name="rate">
+            </div>
+            <div *ngIf="isSubmitted && formControls.rate.errors"
+                class="text-danger px-md-3">
+                <div *ngIf="formControls.rate.errors.required">Product rate is
+                    required</div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 py-md-3">
+                <select class="form-control" formControlName="quality">
+                    <option value="">Select Quality</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div *ngIf="isSubmitted && formControls.quality.errors"
+                class="text-danger px-md-3">
+                <div *ngIf="formControls.quality.errors.required">Product
+                    quality is
+                    required</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-info mx-md-1" (click)="add()">Add</button>
+        <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+    </div>
+</ng-template>

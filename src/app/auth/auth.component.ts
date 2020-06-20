@@ -21,8 +21,10 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm  =  this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]) ],
-
+      username: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)
+      ])],
       password: ['', Validators.compose([Validators.required, Validators.pattern(/(?=.*[A-Z])/)])]
     });
   }
@@ -30,7 +32,6 @@ export class AuthComponent implements OnInit {
   get formControls() { return this.loginForm.controls; }
 
   login(): void {
-    console.log('this.loginForm.value', this.loginForm.value);
     this.isSubmitted = true;
     if (this.loginForm.invalid) {
       return;
@@ -38,7 +39,7 @@ export class AuthComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((res) => {
       this.isSubmitted = false;
       this.errorMsg = '';
-      this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/');
     }, (error) => {
       this.errorMsg = error;
       this.isSubmitted = false;
